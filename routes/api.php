@@ -18,6 +18,13 @@ Route::get('/', function (Request $request) {
         ->header('charset', 'utf-8');
 });
 
+Route::get('/hello',function(Request $request){
+    $name = $request->name;
+    return response(`{"acknowledged": $name}`)
+    ->header('content-type', 'application/json')
+    ->header('charset', 'utf-8');
+});
+
 
 // 先全部get 到最後改成post
 
