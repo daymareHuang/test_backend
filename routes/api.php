@@ -20,7 +20,7 @@ Route::get('/', function (Request $request) {
 
 Route::get('/hello',function(Request $request){
     $name = $request->name;
-    return response(`{"acknowledged": true}`)
+    return response('{"acknowledged": true}')
     ->header('content-type', 'application/json')
     ->header('charset', 'utf-8');
 });
