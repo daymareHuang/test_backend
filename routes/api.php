@@ -18,11 +18,9 @@ Route::get('/', function (Request $request) {
         ->header('charset', 'utf-8');
 });
 
-Route::get('/hello',function(Request $request){
-    $name = $request->name;
-    return response('{"acknowledged": true}')
-    ->header('content-type', 'application/json')
-    ->header('charset', 'utf-8');
+Route::get('/get-ip', function () {
+    $ip = file_get_contents('https://checkip.amazonaws.com/');
+    return response()->json(['heroku_ip' => trim($ip)]);
 });
 
 
