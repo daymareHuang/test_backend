@@ -25,7 +25,7 @@ Route::get('/get-ip', function () {
 
 Route::get('/test-db', function () {
     try {
-        DB::connection()->getPdo();
+        Illuminate\Support\Facades\DB::connection()->getPdo();
         return "Connected to the database successfully!";
     } catch (\Exception $e) {
         return "Could not connect to the database. Error: " . $e->getMessage();
