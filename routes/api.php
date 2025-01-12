@@ -23,6 +23,15 @@ Route::get('/get-ip', function () {
     return response()->json(['heroku_ip' => trim($ip)]);
 });
 
+Route::get('/test-db', function () {
+    try {
+        DB::connection()->getPdo();
+        return "Connected to the database successfully!";
+    } catch (\Exception $e) {
+        return "Could not connect to the database. Error: " . $e->getMessage();
+    }
+});
+
 
 // 先全部get 到最後改成post
 
