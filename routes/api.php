@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\support\Facades\DB;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\WallController;
 
 
