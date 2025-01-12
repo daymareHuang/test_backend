@@ -83,11 +83,7 @@ return [
     'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
 
     'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
-    'providers' => [
-    // 其他服務提供者
-
-    Illuminate\Database\DatabaseServiceProvider::class,
-],
+   
 
     /*
     |--------------------------------------------------------------------------
