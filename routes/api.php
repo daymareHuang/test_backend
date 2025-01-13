@@ -203,7 +203,7 @@ Route::middleware(['auth'])->group(function () {
 
 // 選擇個人穿搭
 Route::get('/outfits/photos/{UID}', function ($UID) {
-    $outfits = DB::table('outfit')
+    $outfits = DB::table('Outfit')
         ->select('UID', 'EditedPhoto')
         ->where('UID', $UID)  //    篩選指定 UID 的照片
         ->get();
@@ -212,7 +212,7 @@ Route::get('/outfits/photos/{UID}', function ($UID) {
 
 // 取得不符目前登入UID的穿搭
 Route::get('/outfits/photos/exceptFor/{UID}', function ($UID) {
-    $outfits = DB::table('outfit')
+    $outfits = DB::table('Outfit')
         ->select('UID', 'EditedPhoto') // 選擇需要的欄位
         ->where('UID', '!=', $UID) // 篩選不包含指定 UID 的照片
         ->get();
@@ -221,7 +221,7 @@ Route::get('/outfits/photos/exceptFor/{UID}', function ($UID) {
 
 // 取得member資料
 Route::get('user-info/{uid}', function ($UID) {
-    $member = Member::where('uid', $UID)->first();
+    $member = Member::where('UID', $UID)->first();
     if ($member) {
         // 返回使用者資料（UserName 和 Avatar）
         return response()->json([
@@ -241,14 +241,14 @@ Route::post('/update-avatar/{UID}', function (Request $request, $UID) {
 
     if ($avatar) {
         // 更新指定 UID 的會員頭像
-        $updated = DB::table('member')
+        $updated = DB::table('Member')
             ->where('UID', $UID)
             ->update(['avatar' => $avatar]);
 
         if ($updated) {
             // 更新成功時，同步寫入資料庫及刷新頁面
             // return redirect()->back()->with('success', '头像更新成功');
-            $member = DB::table('member')->where('UID', $UID)->first();
+            $member = DB::table('Member')->where('UID', $UID)->first();
             return response()->json([
                 'success' => true,
                 'message' => '头像更新成功',
